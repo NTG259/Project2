@@ -36,7 +36,7 @@ public class BuildingServiceImpl implements BuildingService{
 
 	@Override
 	public void DeleteById(Integer id) {
-		
+		System.out.println("hehe");
 		return;
 	}
 	
