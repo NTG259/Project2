@@ -1,5 +1,14 @@
+# Maven build folder
 /target/
-/.metadata
-.project
+
+# Eclipse project files
 .classpath
+.project
 .settings/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
