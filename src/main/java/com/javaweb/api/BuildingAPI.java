@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,11 +19,11 @@ public class BuildingAPI {
 	private BuildingService buildingService;
 	
 	//execute and give to front-end
-	@PostMapping(value = "/api/building/")
-	public List<BuildingDTO> getBuilding (@RequestParam(value ="name") String name){
-		List<BuildingDTO> result = buildingService.findAll(name);
-		return result;
-	}
+//	@PostMapping(value = "/api/building/")
+//	public List<BuildingDTO> getBuilding (@RequestParam(value ="name") String name){
+//		List<BuildingDTO> result = buildingService.findAll(name);
+//		return result;
+//	}
 	
 	@GetMapping(value = "/api/building/")
 	public List<BuildingDTO> getBuilding (
