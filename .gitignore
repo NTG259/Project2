@@ -5,10 +5,19 @@
 .classpath
 .project
 .settings/
+<<<<<<< HEAD
+=======
+.metadata/
+
+>>>>>>> testBranch
 
 # OS-specific files
 .DS_Store
 Thumbs.db
 
 # Logs
+<<<<<<< HEAD
 *.log
+=======
+*.log
+>>>>>>> testBranch

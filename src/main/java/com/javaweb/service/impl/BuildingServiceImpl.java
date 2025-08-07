@@ -37,7 +37,20 @@ public class BuildingServiceImpl implements BuildingService{
 	@Override
 	public void DeleteById(Integer id) {
 		System.out.println("hehe");
+		System.out.println("hihi");
 		return;
 	}
-	
+
+	@Override
+	public List<BuildingDTO> findBuildingByArea(Long Area) {
+		List<BuildingDTO> buildingDTOs = new ArrayList<>();
+		List<BuildingEntity> buildingEntities = buildingRepository.findBuildingEntitiesByArea(Area);
+		for (BuildingEntity item : buildingEntities) {
+			BuildingDTO buildingDTO = new BuildingDTO();
+			buildingDTO.setName(item.getName());
+			buildingDTO.setArea(item.getArea());
+			buildingDTOs.add(buildingDTO);
+		}
+		return buildingDTOs;
+	}
 }

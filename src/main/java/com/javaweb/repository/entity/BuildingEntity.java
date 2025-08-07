@@ -5,7 +5,15 @@ public class BuildingEntity {
 	private Integer numberOfBasement;
 	private String ward;
 	private String street;
+	private Long area;
 	
+	
+	public Long getArea() {
+		return area;
+	}
+	public void setArea(Long area) {
+		this.area = area;
+	}
 	public String getName() {
 		return name;
 	}
