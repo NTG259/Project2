@@ -7,6 +7,6 @@ import com.javaweb.model.BuildingDTO;
 public interface BuildingService {
 	//abstract method
 	List<BuildingDTO> findAll(String name, Long districtId, List<String> typeCode);
-	void DeleteById(Integer id);
 	List<BuildingDTO> findBuildingByArea(Long Area);
+	void DeleteById(Integer id);
 }
