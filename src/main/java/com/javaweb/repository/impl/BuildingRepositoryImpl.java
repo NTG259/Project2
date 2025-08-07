@@ -60,5 +60,27 @@ public class BuildingRepositoryImpl implements BuildingRepository{
 		}
 		return result;
 	}
+
+	@Override
+	public List<BuildingEntity> findBuildingEntitiesByArea(Long Area) {
+		List<BuildingEntity> buildingEntities = new ArrayList<>();
+		connectDatabase();
+		StringBuilder sql = new StringBuilder(
+				"select b.id, b.name as buildingName, r.value as Area, rty.name as rentTypeName from rentarea r left join building b on b.id = r.buildingid join buildingrenttype br on br.buildingid = b.id join renttype rty on rty.id = br.renttypeid" + " where r.value = " + Area
+				);
+		try {
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql.toString());
+			while (rs.next()) {
+				BuildingEntity item = new BuildingEntity();
+				item.setName(rs.getString("buildingName"));
+				item.setArea(rs.getLong("Area"));
+				buildingEntities.add(item);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return buildingEntities;
+	}
 	
 }

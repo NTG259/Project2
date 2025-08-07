@@ -4,6 +4,14 @@ public class BuildingDTO {
 	private String name;
 	private Integer numberOfBasement;
 	private String address;
+	private Long area;
+	
+	public Long getArea() {
+		return area;
+	}
+	public void setArea(Long areaLong) {
+		this.area = areaLong;
+	}
 	public String getName() {
 		return name;
 	}

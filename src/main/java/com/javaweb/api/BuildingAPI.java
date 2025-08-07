@@ -35,6 +35,13 @@ public class BuildingAPI {
 		return result;
 	}
 	
+	@GetMapping(value = "api/buildings/")
+	public List<BuildingDTO> getBuildingByArea(@RequestParam(value = "area") Long Area){
+		List<BuildingDTO> result = buildingService.findBuildingByArea(Area);
+		return result;
+	}
+	
+	
 	public void valiDate(BuildingDTO buildingDTO) throws FieldRequiredException{
 		if (buildingDTO.getName() == null || buildingDTO.getName().isEmpty()) {
 			throw new FieldRequiredException("name is null");
