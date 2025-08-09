@@ -1,5 +1,6 @@
 package com.javaweb.service.impl;
 
+import java.net.CookieManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.javaweb.model.BuildingDTO;
 import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.entity.BuildingEntity;
+import com.javaweb.repository.entity.EntitySearchCriteria;
 import com.javaweb.service.BuildingService;
 
 
@@ -19,38 +21,22 @@ public class BuildingServiceImpl implements BuildingService{
 	private BuildingRepository buildingRepository;
 	
 	@Override
-	public List<BuildingDTO> findAll(String name, Long districtId, List<String> typeCode) {
-		List<BuildingEntity> buildingEntities = buildingRepository.findAll(name, districtId, typeCode);
+	public List<BuildingDTO> findBuildings(EntitySearchCriteria entitySearchCriteria) {
 		List<BuildingDTO> result = new ArrayList<>();
-		
-		for (BuildingEntity item : buildingEntities) {
-			BuildingDTO building = new BuildingDTO();
-			building.setName(item.getName());
-			building.setNumberOfBasement(item.getNumberOfBasement());;
-			building.setAddress(item.getStreet() + ", " + item.getWard());
-			result.add(building);
-		}
-		
-		return result;
-	}
-
-	@Override
-	public void DeleteById(Integer id) {
-		System.out.println("hehe");
-		System.out.println("hihi");
-		return;
-	}
-
-	@Override
-	public List<BuildingDTO> findBuildingByArea(Long Area) {
-		List<BuildingDTO> buildingDTOs = new ArrayList<>();
-		List<BuildingEntity> buildingEntities = buildingRepository.findBuildingEntitiesByArea(Area);
+		List<BuildingEntity> buildingEntities = buildingRepository.findBuildingEntities(entitySearchCriteria);
 		for (BuildingEntity item : buildingEntities) {
 			BuildingDTO buildingDTO = new BuildingDTO();
 			buildingDTO.setName(item.getName());
-			buildingDTO.setArea(item.getArea());
-			buildingDTOs.add(buildingDTO);
+			buildingDTO.setAddress(item.getStreet() + ", " + item.getDistrict() + ", " + item.getWard());
+			buildingDTO.setNameManager(item.getManagerName());
+			buildingDTO.setNumberPhoneManager(item.getManagerphonenumber());
+			buildingDTO.setAreaFloor("" + item.getFloorarea() + "m2");
+			buildingDTO.setAreaRent("" + item.getRentArea() + "m2");
+			buildingDTO.setBrokerageFee(item.getBrokeragefee() + "đ");
+			buildingDTO.setPriceRent(item.getRentpricedescription());
+			buildingDTO.setServiceFee("" + item.getServicefee() + "đ");
+			result.add(buildingDTO);
 		}
-		return buildingDTOs;
+		return result;
 	}
 }
